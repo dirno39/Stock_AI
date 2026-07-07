@@ -35,7 +35,7 @@ def fetch_market_sum_page(url: str = URL) -> str:
 
 def parse_market_sum_table(html: str) -> pd.DataFrame:
     """네이버 시가총액 페이지에서 종목 테이블 추출"""
-    tables = pd.read_html(StringIO(html))
+    tables = pd.read_html(StringIO(html), flavor="html5lib")
 
     df = tables[1]
     df = df.dropna(how="all")
